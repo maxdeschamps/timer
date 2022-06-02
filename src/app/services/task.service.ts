@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Task} from "../models/task.model";
+import {TaskModel} from "../models/task.model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,15 @@ export class TaskService {
   }
 
 
-  getUserTasks() {
-    return this.httpClient.get<Array<Task>>(this.apiBasePath + "/tasks");
+  getUserTasks(userId: number) {
+    return this.httpClient.get<Array<TaskModel>>(this.apiBasePath + "/tasks" + `?user_id=${userId}`);
+  }
+
+  addUserTask(task: TaskModel) {
+    return this.httpClient.post<any>(this.apiBasePath + "/tasks", task).subscribe(data => {
+      console.log('Ajouter')
+      console.log(data)
+    })
   }
 
 }
