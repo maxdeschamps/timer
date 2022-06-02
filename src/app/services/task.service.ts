@@ -13,8 +13,8 @@ export class TaskService {
   }
 
 
-  getUserTasks(userId: number) {
-    return this.httpClient.get<Array<TaskModel>>(this.apiBasePath + "/tasks" + `?user_id=${userId}`);
+  getUserTasks(projectId: number, userId: number) {
+    return this.httpClient.get<Array<TaskModel>>(this.apiBasePath + "/tasks" + `?user_id=${userId}&project_id=${projectId}`);
   }
 
   addUserTask(task: TaskModel) {

@@ -11,6 +11,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import { SandouichModule } from 'sandouich';
 
 const routes: Routes = [
   {path: 'home', component: AppComponent},
@@ -37,8 +38,13 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     SandouichModule,
     ReactiveFormsModule,
     FullCalendarModule,
+    SandouichModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+
+
+}

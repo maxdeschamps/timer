@@ -3,6 +3,7 @@ import {Task} from "../../models/task.model";
 import {TaskService} from "../../services/task.service";
 import { CalendarOptions } from '@fullcalendar/angular';
 import {FormControl, FormGroup} from "@angular/forms";
+import { ModalService } from 'sandouich';
 
 @Component({
   selector: 'app-task',
@@ -11,28 +12,34 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class TaskComponent implements OnInit {
 
+  displayed = true;
+
   userTasks: Array<Task> = [];
 
   formGrpUserTask: FormGroup = new FormGroup({
-    'description': new FormControl(),
+    'title': new FormControl(),
     'start_date': new FormControl(),
     'end_date': new FormControl(),
   })
-  constructor(public taskService: TaskService) { }
+  constructor(public taskService: TaskService, public modalService: ModalService) { }
 
   ngOnInit(): void {
-    this.taskService.getUserTasks(3).subscribe(items => {
+    this.taskService.getUserTasks(2,3).subscribe(items => {
       this.userTasks = items;
     });
 
-    this.submitUserTask()
+    this.modalService.display.subscribe(s => {
+      this.displayed = s;
+    });
+
+    //this.submitUserTask()
   }
 
   submitUserTask() {
     let task: Task = {
-      title: "testttt",
-      start_date: "2022-06-01 15:00",
-      end_date: "2022-06-01 15:00",
+      title: this.formGrpUserTask.get('title'),
+      start_date: this.formGrpUserTask.get('start_date'),
+      end_date: this.formGrpUserTask.get('end_date'),
       user_id: 3,
       project_id: 1,
     }
@@ -52,6 +59,10 @@ export class TaskComponent implements OnInit {
 
   handleDateClick(arg: any) {
     alert('date click! ' + arg.dateStr)
+  }
+
+  openModal() {
+    this.modalService.enable();
   }
 
 }
