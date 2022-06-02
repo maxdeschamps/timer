@@ -35,7 +35,7 @@
   ],
   "tasks": [
     {
-      "description": "Avancement des données de la database",
+      "title": "Avancement des données de la database",
       "start_date": "2022-06-01 15:00",
       "end_date": "2022-06-01 18:00",
       "user_id": 3,
@@ -43,7 +43,7 @@
       "id": 1
     },
     {
-      "description": "Installation de ng-select",
+      "title": "Installation de ng-select",
       "start_date": "2022-06-01 10:00",
       "end_date": "2022-06-01 12:00",
       "user_id": 3,
@@ -51,7 +51,7 @@
       "id": 2
     },
     {
-      "description": "Avancement des données de la database",
+      "title": "Avancement des données de la database",
       "start_date": "2022-06-01 15:00",
       "end_date": "2022-06-01 18:00",
       "user_id": 3,
@@ -59,7 +59,7 @@
       "id": 3
     },
     {
-      "description": "Implémentation du composant select",
+      "title": "Implémentation du composant select",
       "start_date": "2022-06-01 13:00",
       "end_date": "2022-06-01 18:00",
       "user_id": 3,
@@ -67,7 +67,7 @@
       "id": 4
     },
     {
-      "description": "Veille sur FullCalendar",
+      "title": "Veille sur FullCalendar",
       "start_date": "2022-06-01 09:00",
       "end_date": "2022-06-01 12:00",
       "user_id": 3,
@@ -75,7 +75,7 @@
       "id": 5
     },
     {
-      "description": "Développement de la navbar",
+      "title": "Développement de la navbar",
       "start_date": "2022-06-01 09:00",
       "end_date": "2022-06-01 12:00",
       "user_id": 3,
@@ -83,7 +83,7 @@
       "id": 6
     },
     {
-      "description": "Touiller la confiture",
+      "title": "Touiller la confiture",
       "start_date": "2022-06-01 13:00",
       "end_date": "2022-06-01 15:00",
       "user_id": 3,
@@ -91,7 +91,7 @@
       "id": 7
     },
     {
-      "description": "Faire quelques suggestions",
+      "title": "Faire quelques suggestions",
       "start_date": "2022-06-02 09:00",
       "end_date": "2022-06-02 10:00",
       "user_id": 2,
@@ -99,7 +99,7 @@
       "id": 8
     },
     {
-      "description": "Développement de la cards suggestion",
+      "title": "Développement de la cards suggestion",
       "start_date": "2022-06-02 10:00",
       "end_date": "2022-06-02 12:00",
       "user_id": 2,
@@ -107,7 +107,7 @@
       "id": 9
     },
     {
-      "description": "Installation de ng-select",
+      "title": "Installation de ng-select",
       "start_date": "2022-06-01 10:00",
       "end_date": "2022-06-01 12:00",
       "user_id": 1,

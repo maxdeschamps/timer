@@ -8,6 +8,9 @@ import { TaskComponent } from './components/task/task.component';
 import { SandouichModule } from 'sandouich';
 import { LoginComponent } from './components/login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 
 const routes: Routes = [
   {path: 'home', component: AppComponent},
@@ -15,11 +18,16 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
 ]
 
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
+
 @NgModule({
   declarations: [
     AppComponent,
     TaskComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +36,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     SandouichModule,
     ReactiveFormsModule,
+    FullCalendarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
