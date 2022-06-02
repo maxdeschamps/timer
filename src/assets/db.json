@@ -1,0 +1,115 @@
+{
+  "users": [
+    {
+      "firstname": "Sonny",
+      "lastname": "Sha",
+      "id": 1
+    },
+    {
+      "firstname": "JP",
+      "lastname": "BourD",
+      "id": 2
+    },
+    {
+      "firstname": "Maxence",
+      "lastname": "D",
+      "id": 3
+    }
+  ],
+  "projects": [
+    {
+      "name": "TimeR",
+      "id": 1
+    },
+    {
+      "name": "Let's Jam",
+      "id": 2
+    },
+    {
+      "name": "Suggest.io",
+      "id": 3
+    }
+  ],
+  "tasks": [
+    {
+      "description": "Avancement des données de la database",
+      "start_date": "2022-06-01 15:00",
+      "end_date": "2022-06-01 18:00",
+      "user_id": 3,
+      "project_id": 1,
+      "id": 1
+    },
+    {
+      "description": "Installation de ng-select",
+      "start_date": "2022-06-01 10:00",
+      "end_date": "2022-06-01 12:00",
+      "user_id": 3,
+      "project_id": 1,
+      "id": 2
+    },
+    {
+      "description": "Avancement des données de la database",
+      "start_date": "2022-06-01 15:00",
+      "end_date": "2022-06-01 18:00",
+      "user_id": 3,
+      "project_id": 1,
+      "id": 3
+    },
+    {
+      "description": "Implémentation du composant select",
+      "start_date": "2022-06-01 13:00",
+      "end_date": "2022-06-01 18:00",
+      "user_id": 3,
+      "project_id": 1,
+      "id": 4
+    },
+    {
+      "description": "Veille sur FullCalendar",
+      "start_date": "2022-06-01 09:00",
+      "end_date": "2022-06-01 12:00",
+      "user_id": 3,
+      "project_id": 1,
+      "id": 5
+    },
+    {
+      "description": "Développement de la navbar",
+      "start_date": "2022-06-01 09:00",
+      "end_date": "2022-06-01 12:00",
+      "user_id": 3,
+      "project_id": 1,
+      "id": 6
+    },
+    {
+      "description": "Touiller la confiture",
+      "start_date": "2022-06-01 13:00",
+      "end_date": "2022-06-01 15:00",
+      "user_id": 3,
+      "project_id": 2,
+      "id": 7
+    },
+    {
+      "description": "Faire quelques suggestions",
+      "start_date": "2022-06-02 09:00",
+      "end_date": "2022-06-02 10:00",
+      "user_id": 2,
+      "project_id": 3,
+      "id": 8
+    },
+    {
+      "description": "Développement de la cards suggestion",
+      "start_date": "2022-06-02 10:00",
+      "end_date": "2022-06-02 12:00",
+      "user_id": 2,
+      "project_id": 3,
+      "id": 9
+    },
+    {
+      "description": "Installation de ng-select",
+      "start_date": "2022-06-01 10:00",
+      "end_date": "2022-06-01 12:00",
+      "user_id": 1,
+      "project_id": 2,
+      "id": 10
+    }
+  ]
+}
