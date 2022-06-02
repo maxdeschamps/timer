@@ -6,3 +6,6 @@ export interface TaskModel {
   user_id?: number;
   project_id?: number;
 }
+
+export class Task {
+}
