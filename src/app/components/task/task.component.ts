@@ -26,7 +26,7 @@ export class TaskComponent implements OnInit {
 
     this.refreshUserTasks()
 
-    this.modalService.display.subscribe(s => {
+    this.modalService.display.subscribe((s: any) => {
       this.displayed = s;
     });
 
