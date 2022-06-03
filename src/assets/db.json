@@ -1,16 +1,19 @@
 {
   "users": [
     {
+      "email": "sonnysha@gmail.com",
       "firstname": "Sonny",
       "lastname": "Sha",
       "id": 1
     },
     {
+      "email": "jpbourd@gmail.com",
       "firstname": "JP",
       "lastname": "BourD",
       "id": 2
     },
     {
+      "email": "maxenced@gmail.com",
       "firstname": "Maxence",
       "lastname": "D",
       "id": 3
