@@ -1,1 +1,19 @@
-<p>task works!</p>
+<full-calendar [options]="calendarOptions"></full-calendar>
+
+<sand-modal *ngIf="displayed">
+  <div title>
+    Déclaration
+  </div>
+  <div detail>
+
+      <sand-input label="Titre" type="text" [formValue]="title"></sand-input>
+      <sand-input label="Date début" type="datetime-local" [formValue]="start_date"></sand-input>
+      <sand-input label="Date fin" type="datetime-local" [formValue]="end_date"></sand-input>
+
+  </div>
+  <div action>
+    <sand-button (click)="submitUserTask()">Valider</sand-button>
+  </div>
+</sand-modal>
+
+<button (click)="openModal()">Open Modal</button>
