@@ -6,16 +6,20 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from "@angular/common/http";
 import { TaskComponent } from './components/task/task.component';
 import { SandouichModule } from 'sandouich';
+import { LoginComponent } from './components/login/login.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 const routes: Routes = [
   {path: 'home', component: AppComponent},
   {path: 'tasks', component: TaskComponent},
+  {path: 'login', component: LoginComponent},
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
-    TaskComponent
+    TaskComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +27,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     SandouichModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
