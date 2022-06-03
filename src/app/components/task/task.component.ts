@@ -74,6 +74,10 @@ export class TaskComponent implements OnInit {
     initialView: 'dayGridMonth',
     dateClick: this.handleDateClick.bind(this),
     locale: 'fr',
+    firstDay: 1,
+    buttonText: {
+      today:    "Aujourd'hui",
+    },
     events: [],
   };
 
