@@ -1,4 +1,12 @@
+
+<p>Projet</p>
+<sand-select [formValue]="selectedProject" [arrayItems]="projects" (event)="projectSelectedChanged($event)"></sand-select>
+<sand-datepicker></sand-datepicker>
+<div class="calendarContainer">
+
+</div>
 <full-calendar [options]="calendarOptions"></full-calendar>
+
 
 <sand-modal *ngIf="displayed">
   <div title>
