@@ -9,8 +9,8 @@ import { SandouichModule } from 'sandouich'; // Lib
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
-import { dayGridPlugin } from '@fullcalendar/daygrid'; // a plugin!
-import { interactionPlugin } from '@fullcalendar/interaction';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction';
 import { LogoutComponent } from './components/logout/logout.component'; // a plugin!
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgApexchartsModule } from 'ng-apexcharts';
