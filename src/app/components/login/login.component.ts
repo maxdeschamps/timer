@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 import {UserModel} from "../../models/user.model";
 import {UserService} from "../../services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -15,9 +16,12 @@ export class LoginComponent implements OnInit {
 
   errors: string|null = null;
 
-  constructor(public userService: UserService) { }
+  constructor(public router: Router, public userService: UserService) { }
 
   ngOnInit(): void {
+    if (this.userService.getLoggedUser()) {
+      this.router.navigate(['tasks']);
+    }
   }
 
   logUser(): void {
@@ -35,7 +39,7 @@ export class LoginComponent implements OnInit {
         if (item) {
           this.userService.logUser(item)
           this.errors = null;
-          return;
+          this.router.navigate(['tasks']);
         }
 
         this.errors = "Aucun utilisateur ne correspond aux informations saisies";
