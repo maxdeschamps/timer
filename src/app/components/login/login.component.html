@@ -2,8 +2,11 @@
   <div header>
     <h3>Formulaire de connexion</h3>
   </div>
-  <div content>
-    <sand-input label="Email" type="email" [formValue]="password"></sand-input>
+  <div content style="width:100%;">
+    <div *ngIf="errors" class="errors">
+      <p>{{ errors }}</p>
+    </div>
+    <sand-input label="Email" type="email" [formValue]="email"></sand-input>
     <sand-input label="Mot de passe" type="password" [formValue]="password"></sand-input>
     <sand-button class="info" (click)="logUser()">Se connecter</sand-button>
   </div>

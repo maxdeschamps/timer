@@ -5,6 +5,7 @@ import {ProjectService} from "../../services/project.service";
 import {CalendarOptions} from '@fullcalendar/angular';
 import {FormControl} from "@angular/forms";
 import {ModalService} from 'sandouich';
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-task',
@@ -22,23 +23,24 @@ export class TaskComponent implements OnInit {
   end_date = new FormControl();
   selectedProject = new FormControl(1);
 
-  constructor(public taskService: TaskService, public modalService: ModalService, public projectService: ProjectService) { }
+  constructor(public taskService: TaskService, public modalService: ModalService, public projectService: ProjectService, public userService: UserService) { }
 
   ngOnInit(): void {
-
     this.refreshUserTasks()
     this.refreshProjects()
 
     this.modalService.display.subscribe((s: any) => {
       this.displayed = s;
     });
-
   }
 
   refreshUserTasks() {
-    this.taskService.getUserTasks(this.selectedProject.value,3).subscribe(items => {
-      this.calendarOptions.events = items;
-    });
+    const user = this.userService.getLoggedUser();
+    if (user) {
+      this.taskService.getUserTasks(this.selectedProject.value, user.id).subscribe(items => {
+        this.calendarOptions.events = items;
+      });
+    }
 
   }
 
@@ -54,32 +56,22 @@ export class TaskComponent implements OnInit {
   }
 
   submitUserTask() {
-    let task: Task = {
-      title: this.title.value,
-      start: this.start_date.value,
-      end:  this.end_date.value,
-      user_id: 3,
-      project_id: 1,
-    }
+    const user = this.userService.getLoggedUser();
+    if (user) {
+      let task: Task = {
+        title: this.title.value,
+        start: this.start_date.value,
+        end:  this.end_date.value,
+        user_id: user.id,
+        project_id: 1,
+      }
 
-
-
-    this.taskService.addUserTask(task).subscribe(item => {
+      this.taskService.addUserTask(task).subscribe(item => {
         this.modalService.disable();
         this.refreshUserTasks()
       });
-
-   /** if(this.taskService.addUserTask(task)) {
-      this.modalService.disable();
-      this.refreshUserTasks()
     }
-    **/
-
-
-
-
   }
-
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
@@ -104,5 +96,4 @@ export class TaskComponent implements OnInit {
     this.end_date.setValue("")
     this.modalService.enable();
   }
-
 }
