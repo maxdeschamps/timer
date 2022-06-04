@@ -25,7 +25,7 @@ export class UserService {
     return true;
   }
 
-  unlogUser(user: UserModel): any {
+  unlogUser(): any {
     localStorage.setItem('user', JSON.stringify(null));
   }
 }
