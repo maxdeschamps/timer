@@ -1,0 +1,9 @@
+@import 'node_modules/sandouich/scss/variables';
+
+.errors {
+  background-color: map_get($bg-color, 'error');
+  border: 1px solid #910000;
+  border-radius: .25rem;
+  padding: .2rem .9rem;
+  margin-bottom: 1rem;
+}

@@ -13,19 +13,34 @@ export class LoginComponent implements OnInit {
   email = new FormControl();
   password = new FormControl();
 
+  errors: string|null = null;
+
   constructor(public userService: UserService) { }
 
   ngOnInit(): void {
   }
 
-
-  logUser() {
-    let user: UserModel = {
-      email: this.email?.value,
-      password: this.password?.value,
+  logUser(): void {
+    if (!this.email || !this.password) {
+      this.errors = "Les informations saisies ne sont pas complètes";
+      return;
     }
 
-    this.userService.logUser(user);
+    this.userService.findUsers().subscribe(
+      (items: Array<UserModel>|null) => {
+        const item = items
+          ? items.find(item => (item.email === this.email.value && item.password === this.password.value))
+          : null;
+
+        if (item) {
+          this.userService.logUser(item)
+          this.errors = null;
+          return;
+        }
+
+        this.errors = "Aucun utilisateur ne correspond aux informations saisies";
+      }
+    )
   }
 
 }
