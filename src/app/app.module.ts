@@ -10,12 +10,14 @@ import { LoginComponent } from './components/login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction';
+import { LogoutComponent } from './components/logout/logout.component'; // a plugin!
 
 const routes: Routes = [
   {path: 'home', component: AppComponent},
   {path: 'tasks', component: TaskComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'logout', component: LogoutComponent},
 ]
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -28,6 +30,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AppComponent,
     TaskComponent,
     LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
