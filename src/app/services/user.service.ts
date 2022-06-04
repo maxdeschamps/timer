@@ -6,11 +6,26 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class UserService {
+  user: UserModel|null = null;
+
   apiBasePath = 'http://localhost:3000';
 
   constructor(public httpClient: HttpClient) { }
 
-  logUser(user: UserModel) {
-    console.log(user);
+  findUsers(): any {
+    return this.httpClient.get<any>(this.apiBasePath + "/users");
+  }
+
+  getLoggedUser(): UserModel|null {
+    return JSON.parse(<string>localStorage.getItem('user'));
+  }
+
+  logUser(user: UserModel): boolean {
+    localStorage.setItem('user', JSON.stringify(user));
+    return true;
+  }
+
+  unlogUser(user: UserModel): any {
+    localStorage.setItem('user', JSON.stringify(null));
   }
 }
