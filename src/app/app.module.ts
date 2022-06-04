@@ -5,13 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from "@angular/common/http";
 import { TaskComponent } from './components/task/task.component';
-import { SandouichModule } from 'sandouich';
+import { SandouichModule } from 'sandouich'; // Lib
 import { LoginComponent } from './components/login/login.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction';
+import { dayGridPlugin } from '@fullcalendar/daygrid'; // a plugin!
+import { interactionPlugin } from '@fullcalendar/interaction';
 import { LogoutComponent } from './components/logout/logout.component'; // a plugin!
+import { DpDatePickerModule } from 'ng2-date-picker';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 const routes: Routes = [
   {path: 'home', component: AppComponent},
@@ -41,6 +44,10 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ReactiveFormsModule,
     FullCalendarModule,
     SandouichModule,
+    DpDatePickerModule,
+    FormsModule,
+    NgApexchartsModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
