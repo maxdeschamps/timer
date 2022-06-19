@@ -25,15 +25,18 @@
   "projects": [
     {
       "name": "TimeR",
-      "id": 1
+      "id": 1,
+      "color": "#008FFB"
     },
     {
       "name": "Let's Jam",
-      "id": 2
+      "id": 2,
+      "color": "#FEB019"
     },
     {
       "name": "Suggest.io",
-      "id": 3
+      "id": 3,
+      "color": "#FF4560"
     }
   ],
   "tasks": [
