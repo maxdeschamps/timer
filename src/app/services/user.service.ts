@@ -16,6 +16,10 @@ export class UserService {
     return this.httpClient.get<any>(this.apiBasePath + "/users");
   }
 
+  getUsers() {
+    return this.httpClient.get<Array<any>>(this.apiBasePath + "/users");
+  }
+
   getLoggedUser(): UserModel|null {
     return JSON.parse(<string>localStorage.getItem('user'));
   }
