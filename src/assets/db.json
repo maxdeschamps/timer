@@ -3,22 +3,25 @@
     {
       "email": "sonnysha@gmail.com",
       "firstname": "Sonny",
-      "lastname": "Sha",
+      "lastname": "Chaprier",
       "password": "sonny",
+      "role": "USER",
       "id": 1
     },
     {
       "email": "jpbourd@gmail.com",
-      "firstname": "JP",
-      "lastname": "BourD",
+      "firstname": "Jean-Philippe",
+      "lastname": "Bourdais",
       "password": "jp",
+      "role": "USER",
       "id": 2
     },
     {
       "email": "maxenced@gmail.com",
       "firstname": "Maxence",
-      "lastname": "D",
+      "lastname": "Deschamps",
       "password": "max",
+      "role": "ADMIN",
       "id": 3
     }
   ],
