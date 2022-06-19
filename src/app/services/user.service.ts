@@ -12,7 +12,7 @@ export class UserService {
 
   constructor(public httpClient: HttpClient) { }
 
-  findUsers(): any {
+  findUsers() {
     return this.httpClient.get<any>(this.apiBasePath + "/users");
   }
 
