@@ -45,55 +45,55 @@ export class StatsTotalTasksComponent implements OnInit {
           this.projects.forEach((project: { id: number; color: string; name: string; }) => {
             let tasksByProject = this.tasks.filter(getTasksByUserId(project.id));
             if (this.filterDateFrom != null || this.filterDateTo != null) {
-              tasksByProject = tasksByProject.filter(getTasksByDate(this.filterDateFrom, this.filterDateTo));
+              tasksByProject = tasksByProject.filter(this.taskService.getTasksByDate(this.filterDateFrom, this.filterDateTo));
             }
             this.data.push(tasksByProject.length);
             this.colors.push(project.color);
             this.categories.push(project.name);
+          });
 
-            this.chartOpt = {
-              series: [
-                {
-                  name: "Tâches",
-                  data: this.data
-                }
-              ],
-              chart: {
-                height: 350,
-                type: "bar",
-              },
-              colors: this.colors,
-              plotOptions: {
-                bar: {
-                  distributed: true
-                }
-              },
-              dataLabels: {
-                enabled: false
-              },
-              legend: {
-                show: false
-              },
-              yaxis: [
-                {
-                  labels: {
-                    formatter: function(val: number) {
-                      return val.toFixed(0);
-                    }
-                  }
-                }
-              ],
-              xaxis: {
-                categories: this.categories,
+          this.chartOpt = {
+            series: [
+              {
+                name: "Tâches",
+                data: this.data
+              }
+            ],
+            chart: {
+              height: 350,
+              type: "bar",
+            },
+            colors: this.colors,
+            plotOptions: {
+              bar: {
+                distributed: true
+              }
+            },
+            dataLabels: {
+              enabled: false
+            },
+            legend: {
+              show: false
+            },
+            yaxis: [
+              {
                 labels: {
-                  style: {
-                    colors: this.colors,
-                    fontSize: "12px"
+                  formatter: function(val: number) {
+                    return val.toFixed(0);
                   }
                 }
               }
-            };
-          });
+            ],
+            xaxis: {
+              categories: this.categories,
+              labels: {
+                style: {
+                  colors: this.colors,
+                  fontSize: "12px"
+                }
+              }
+            }
+          };
         });
       });
     }
@@ -105,23 +105,3 @@ function getTasksByUserId(projectId: number) {
     return task.project_id === projectId;
   }
 }
-
-function getTasksByDate(filterDateFrom: any, filterDateTo: any) {
-  return function (task: any) {
-    let start = Date.parse(task.start)/1000;
-    let end = Date.parse(task.end)/1000;
-
-    if (filterDateFrom != null && filterDateTo === null) {
-      let filterStart = Date.parse(filterDateFrom)/1000;
-      return start >= filterStart || end > filterStart;
-    } else if (filterDateFrom === null && filterDateTo != null) {
-      let filterEnd = Date.parse(filterDateTo)/1000;
-      return start < filterEnd || end <= filterEnd;
-    } else {
-      let filterStart = Date.parse(filterDateFrom)/1000;
-      let filterEnd = Date.parse(filterDateTo)/1000;
-      return (start >= filterStart || end > filterStart) && (start < filterEnd || end <= filterEnd);
-    }
-  }
-}
-

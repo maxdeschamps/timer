@@ -28,4 +28,23 @@ export class TaskService {
     return this.httpClient.post<any>(this.apiBasePath + "/tasks", task)
   }
 
+  getTasksByDate(filterDateFrom: any, filterDateTo: any) {
+    return function (task: any) {
+      let start = Date.parse(task.start)/1000;
+      let end = Date.parse(task.end)/1000;
+  
+      if (filterDateFrom != null && filterDateTo === null) {
+        let filterStart = Date.parse(filterDateFrom)/1000;
+        return start >= filterStart || end > filterStart;
+      } else if (filterDateFrom === null && filterDateTo != null) {
+        let filterEnd = Date.parse(filterDateTo)/1000;
+        return start < filterEnd || end <= filterEnd;
+      } else {
+        let filterStart = Date.parse(filterDateFrom)/1000;
+        let filterEnd = Date.parse(filterDateTo)/1000;
+        return (start >= filterStart || end > filterStart) && (start < filterEnd || end <= filterEnd);
+      }
+    }
+  }
+
 }
