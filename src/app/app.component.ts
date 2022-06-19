@@ -27,4 +27,7 @@ export class AppComponent {
     this.user = this.userService.getLoggedUser();
   }
 
+  userIsAdmin(): boolean {
+    return this.userService.getLoggedUser()?.role === 'ADMIN';
+  }
 }
