@@ -22,6 +22,7 @@ import { ManagerComponent } from './components/manager/manager.component';
 const routes: Routes = [
   {path: 'home', component: AppComponent},
   {path: 'tasks', component: TaskComponent},
+  {path: 'manager', component: ManagerComponent},
   {path: 'stats', component: StatsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
