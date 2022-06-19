@@ -15,10 +15,13 @@ import { LogoutComponent } from './components/logout/logout.component'; // a plu
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { StatsComponent } from './components/stats/stats.component';
+import { StatsTotalTasksComponent } from './components/stats/stats-details/stats-total-tasks/stats-total-tasks.component';
 
 const routes: Routes = [
   {path: 'home', component: AppComponent},
   {path: 'tasks', component: TaskComponent},
+  {path: 'stats', component: StatsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
 ]
@@ -34,6 +37,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     TaskComponent,
     LoginComponent,
     LogoutComponent,
+    StatsComponent,
+    StatsTotalTasksComponent,
   ],
   imports: [
     BrowserModule,

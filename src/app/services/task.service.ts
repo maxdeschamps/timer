@@ -12,9 +12,16 @@ export class TaskService {
 
   }
 
+  getTasks() {
+    return this.httpClient.get<Array<any>>(this.apiBasePath + "/tasks");
+  }
 
   getUserTasks(projectId: number, userId: number) {
     return this.httpClient.get<Array<any>>(this.apiBasePath + "/tasks" + `?user_id=${userId}&project_id=${projectId}`);
+  }
+
+  getUserTasksAllProjects(userId: number) {
+    return this.httpClient.get<Array<any>>(this.apiBasePath + "/tasks" + `?user_id=${userId}`);
   }
 
   addUserTask(task: TaskModel) {
