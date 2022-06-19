@@ -17,6 +17,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { StatsComponent } from './components/stats/stats.component';
 import { StatsTotalTasksComponent } from './components/stats/stats-details/stats-total-tasks/stats-total-tasks.component';
+import { ManagerComponent } from './components/manager/manager.component';
 
 const routes: Routes = [
   {path: 'home', component: AppComponent},
@@ -39,6 +40,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     LogoutComponent,
     StatsComponent,
     StatsTotalTasksComponent,
+    ManagerComponent,
   ],
   imports: [
     BrowserModule,
