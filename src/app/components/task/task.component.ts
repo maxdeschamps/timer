@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {Task} from "../../models/task.model";
 import {TaskService} from "../../services/task.service";
 import {ProjectService} from "../../services/project.service";
@@ -16,18 +16,23 @@ export class TaskComponent implements OnInit {
 
   displayed = true;
 
-  projects:any = []
+  projects: any = []
+  users: any = [];
 
   title = new FormControl();
   start_date = new FormControl();
   end_date = new FormControl();
   selectedProject = new FormControl(1);
+  selectedUser = new FormControl(this.userService.getLoggedUser()?.id ?? 1);
 
   constructor(public taskService: TaskService, public modalService: ModalService, public projectService: ProjectService, public userService: UserService) { }
 
   ngOnInit(): void {
-    this.refreshUserTasks()
-    this.refreshProjects()
+    this.refreshUserTasks();
+    this.refreshProjects();
+    if (this.userService.loggedUserIsAdmin()) {
+      this.refreshUsers();
+    }
 
     this.modalService.display.subscribe((s: any) => {
       this.displayed = s;
@@ -37,11 +42,23 @@ export class TaskComponent implements OnInit {
   refreshUserTasks() {
     const user = this.userService.getLoggedUser();
     if (user) {
-      this.taskService.getUserTasks(this.selectedProject.value, user.id).subscribe(items => {
+      this.taskService.getUserTasks(this.selectedProject.value, this.selectedUser.value).subscribe(items => {
         this.calendarOptions.events = items;
       });
     }
+  }
 
+  refreshUsers() {
+    this.userService.findUsers().subscribe(items => {
+      let usersArray = [];
+      for(let i=0; i<items.length; i++) {
+        usersArray.push({
+          name: items[i].firstname + ' ' + items[i].lastname,
+          id: items[i].id
+        })
+      }
+      this.users = usersArray;
+    });
   }
 
   refreshProjects() {
@@ -52,6 +69,11 @@ export class TaskComponent implements OnInit {
 
   projectSelectedChanged(projectId: number) {
     this.selectedProject.setValue(projectId)
+    this.refreshUserTasks()
+  }
+
+  userSelectedChanged(userId: any) {
+    this.selectedUser.setValue(userId)
     this.refreshUserTasks()
   }
 
@@ -79,7 +101,7 @@ export class TaskComponent implements OnInit {
     locale: 'fr',
     firstDay: 1,
     buttonText: {
-      today:    "Aujourd'hui",
+      today: "Aujourd'hui",
     },
     events: [],
   };
@@ -95,5 +117,9 @@ export class TaskComponent implements OnInit {
     this.start_date.setValue("")
     this.end_date.setValue("")
     this.modalService.enable();
+  }
+
+  userLoggedIsAdmin(): boolean {
+    return this.userService.loggedUserIsAdmin();
   }
 }
