@@ -19,18 +19,14 @@
 </div>
 <full-calendar [options]="calendarOptions"></full-calendar>
 
-
 <sand-modal *ngIf="displayed">
-  <div title>Déclaration</div>
+  <div title class="h3">Déclaration</div>
   <div detail>
-
       <sand-input label="Titre" type="text" [formValue]="title"></sand-input>
       <sand-input label="Date début" type="datetime-local" [formValue]="start_date"></sand-input>
       <sand-input label="Date fin" type="datetime-local" [formValue]="end_date"></sand-input>
-
   </div>
   <div action>
-
     <sand-button *ngIf="id" (click)="deleteTask()" class="error btnTaskDelete" [secondary]="true">Supprimer</sand-button>
     <sand-button (click)="submitUserTask()" class="success">Valider</sand-button>
   </div>
