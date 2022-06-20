@@ -10,24 +10,25 @@ import { User } from "./models/user.model";
 })
 export class AppComponent {
   title = 'timer';
-
   currentRoute: string;
 
-  user: User|null;
+  user: User|null = null;
 
   constructor(private router: Router, private userService: UserService) {
     this.currentRoute = "";
     this.router.events.subscribe((event: Event) => {
-
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.url;
       }
+      this.user = this.userService.getLoggedUser();
     });
-
-    this.user = this.userService.getLoggedUser();
   }
 
   userIsLogged(): boolean {
     return this.userService.getLoggedUser() !== null;
+  }
+
+  userIsAdmin(): boolean {
+    return this.userService.loggedUserIsAdmin();
   }
 }
