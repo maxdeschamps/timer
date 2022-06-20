@@ -1,5 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import {Task} from "../../models/task.model";
+import {Project} from "../../models/project.model";
+import {User} from "../../models/user.model";
 import {TaskService} from "../../services/task.service";
 import {ProjectService} from "../../services/project.service";
 import {CalendarOptions} from '@fullcalendar/angular';
@@ -17,8 +19,8 @@ export class TaskComponent implements OnInit {
 
   displayed = true;
 
-  projects: any = []
-  users: any = [];
+  projects: Array<Project> = []
+  users: Array<User> = [];
 
   id: any = null;
   title = new FormControl();
@@ -55,7 +57,7 @@ export class TaskComponent implements OnInit {
 
   refreshUsers() {
     this.userService.findUsers().subscribe(items => {
-      let usersArray = [];
+      let usersArray: Array<any> = [];
       for(let i=0; i<items.length; i++) {
         usersArray.push({
           name: items[i].firstname + ' ' + items[i].lastname,
