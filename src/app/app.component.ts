@@ -27,4 +27,7 @@ export class AppComponent {
     this.user = this.userService.getLoggedUser();
   }
 
+  userIsLogged(): boolean {
+    return this.userService.getLoggedUser() !== null;
+  }
 }
