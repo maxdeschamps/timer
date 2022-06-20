@@ -19,6 +19,7 @@ import { StatsComponent } from './components/stats/stats.component';
 import { StatsTotalTasksComponent } from './components/stats/stats-details/stats-total-tasks/stats-total-tasks.component';
 import { StatsTimelineTasksComponent } from './components/stats/stats-details/stats-timeline-tasks/stats-timeline-tasks.component';
 import { HomeComponent } from './components/home/home.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'stats', component: StatsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
+  {path: 'gallery', component: GalleryComponent},
 ]
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -43,6 +45,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     StatsTotalTasksComponent,
     StatsTimelineTasksComponent,
     HomeComponent,
+    GalleryComponent,
   ],
   imports: [
     BrowserModule,
