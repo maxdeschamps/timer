@@ -37,7 +37,7 @@
       "color": "#FEB019"
     },
     {
-      "name": "Suggest.io",
+      "name": "Interne",
       "id": 3,
       "color": "#FF4560"
     }
@@ -45,99 +45,251 @@
   "tasks": [
     {
       "id": 1,
-      "title": "Avancement des données de la database",
+      "title": "Création du modèle de données",
+      "start": "2022-06-02T08:00",
+      "end": "2022-06-02T12:00",
+      "user_id": 1,
+      "project_id": 1
+    },
+    {
+      "id": 2,
+      "title": "Installation de l'architecture",
+      "start": "2022-06-02T14:00",
+      "end": "2022-06-02T15:00",
+      "user_id": 1,
+      "project_id": 1
+    },
+    {
+      "id": 3,
+      "title": "Création des modèles",
+      "start": "2022-06-02T15:00",
+      "end": "2022-06-02T18:00",
+      "user_id": 1,
+      "project_id": 1
+    },
+    {
+      "id": 4,
+      "title": "Assistance téléphonique",
+      "start": "2022-06-03T08:00",
+      "end": "2022-06-03T12:00",
+      "user_id": 1,
+      "project_id": 2
+    },
+    {
+      "id": 5,
+      "title": "Veille technologique",
+      "start": "2022-06-03T14:00",
+      "end": "2022-06-03T17:00",
+      "user_id": 1,
+      "project_id": 3
+    },
+    {
+      "id": 6,
+      "title": "Développement de la navbar",
+      "start": "2022-06-06T09:00",
+      "end": "2022-06-06T12:00",
+      "user_id": 1,
+      "project_id": 1
+    },
+    {
+      "id": 7,
+      "title": "Développement de la navbar",
+      "start": "2022-06-06T13:00",
+      "end": "2022-06-06T14:00",
+      "user_id": 1,
+      "project_id": 1
+    },
+    {
+      "id": 8,
+      "title": "Fix d'affichages sur la lib sandouich",
+      "start": "2022-06-06T14:00",
+      "end": "2022-06-06T18:00",
+      "user_id": 1,
+      "project_id": 1
+    },
+    {
+      "id": 9,
+      "title": "Développement des tabs",
+      "start": "2022-06-07T08:00",
+      "end": "2022-06-07T12:00",
+      "user_id": 1,
+      "project_id": 1
+    },
+    {
+      "id": 10,
+      "title": "Correction des erreurs de les tabs",
+      "start": "2022-06-07T13:00",
+      "end": "2022-06-07T15:00",
+      "user_id": 1,
+      "project_id": 1
+    },
+    {
+      "id": 11,
+      "title": "Générer les statistiques",
+      "start": "2022-06-02T08:00",
+      "end": "2022-06-02T12:00",
+      "user_id": 2,
+      "project_id": 1
+    },
+    {
+      "id": 12,
+      "title": "Timeline des tâches",
+      "start": "2022-06-02T13:00",
+      "end": "2022-06-02T15:00",
+      "user_id": 2,
+      "project_id": 1
+    },
+    {
+      "id": 13,
+      "title": "Boire un café",
+      "start": "2022-06-02T15:00",
+      "end": "2022-06-02T18:00",
+      "user_id": 2,
+      "project_id": 3
+    },
+    {
+      "id": 14,
+      "title": "Améliorer les performances de la lib",
+      "start": "2022-06-03T08:00",
+      "end": "2022-06-03T12:00",
+      "user_id": 2,
+      "project_id": 1
+    },
+    {
+      "id": 15,
+      "title": "Améliorer le style sur les composants de la lib",
+      "start": "2022-06-03T13:00",
+      "end": "2022-06-03T17:00",
+      "user_id": 2,
+      "project_id": 1
+    },
+    {
+      "id": 16,
+      "title": "Intégrer les Chart JS",
+      "start": "2022-06-06T08:00",
+      "end": "2022-06-06T12:00",
+      "user_id": 2,
+      "project_id": 1
+    },
+    {
+      "id": 17,
+      "title": "Filtrer les données affichées dans les Chart JS",
+      "start": "2022-06-06T13:00",
+      "end": "2022-06-06T15:00",
+      "user_id": 2,
+      "project_id": 1
+    },
+    {
+      "id": 17,
+      "title": "Correction sur les fiches produit",
+      "start": "2022-06-06T15:00",
+      "end": "2022-06-06T16:00",
+      "user_id": 2,
+      "project_id": 1
+    },
+    {
+      "id": 18,
+      "title": "Pause café",
+      "start": "2022-06-06T16:00",
+      "end": "2022-06-06T18:00",
+      "user_id": 2,
+      "project_id": 3
+    },
+    {
+      "id": 19,
+      "title": "Boire de l'eau",
+      "start": "2022-06-07T09:00",
+      "end": "2022-06-07T11:00",
+      "user_id": 2,
+      "project_id": 3
+    },
+    {
+      "id": 20,
+      "title": "Rire aux blagues du chef de projet",
+      "start": "2022-06-07T11:00",
+      "end": "2022-06-07T12:00",
+      "user_id": 2,
+      "project_id": 3
+    },
+    {
+      "id": 21,
+      "title": "Préparer les tâches sur le projet",
+      "start": "2022-06-02T08:00",
+      "end": "2022-06-02T12:00",
+      "user_id": 3,
+      "project_id": 1
+    },
+    {
+      "id": 22,
+      "title": "Contacter le client sur l'évolution du projet",
+      "start": "2022-06-02T14:00",
+      "end": "2022-06-02T15:00",
+      "user_id": 3,
+      "project_id": 2
+    },
+    {
+      "id": 23,
+      "title": "Développer un système de connexion",
       "start": "2022-06-02T15:00",
       "end": "2022-06-02T18:00",
       "user_id": 3,
       "project_id": 1
     },
     {
-      "title": "Installation de ng-select",
-      "start": "2022-06-01 10:00",
-      "end": "2022-06-01 12:00",
-      "user_id": 3,
-      "project_id": 1,
-      "id": 2
-    },
-    {
-      "title": "Avancement des données de la database",
-      "start": "2022-06-01 15:00",
-      "end": "2022-06-01 18:00",
-      "user_id": 3,
-      "project_id": 1,
-      "id": 3
-    },
-    {
-      "title": "Implémentation du composant select",
-      "start": "2022-06-01 13:00",
-      "end": "2022-06-01 18:00",
-      "user_id": 3,
-      "project_id": 1,
-      "id": 4
-    },
-    {
-      "id": 5,
-      "title": "Veille sur FullCalendar",
-      "start": "2022-06-02T09:00",
-      "end": "2022-06-02T12:00",
-      "user_id": 3,
-      "project_id": 1
-    },
-    {
-      "id": 6,
-      "title": "Développement de la navbar",
-      "start": "2022-06-01T09:00",
-      "end": "2022-06-01T12:00",
-      "user_id": 3,
-      "project_id": 1
-    },
-    {
-      "title": "Touiller la confiture",
-      "start": "2022-06-01 13:00",
-      "end": "2022-06-01 15:00",
-      "user_id": 3,
-      "project_id": 2,
-      "id": 7
-    },
-    {
-      "id": 8,
-      "title": "Faire quelques suggestions pour le truc",
-      "start": "2022-06-02T09:00",
-      "end": "2022-06-02T10:00",
-      "user_id": 3,
-      "project_id": 3
-    },
-    {
-      "title": "Développement de la cards suggestion",
-      "start": "2022-06-02 10:00",
-      "end": "2022-06-02 12:00",
-      "user_id": 2,
-      "project_id": 3,
-      "id": 9
-    },
-    {
-      "id": 10,
-      "title": "Installation de ng-selecte",
-      "start": "2022-06-01T10:00",
-      "end": "2022-06-01T12:00",
-      "user_id": 3,
-      "project_id": 2
-    },
-    {
-      "id": 11,
-      "title": "Écran client",
+      "id": 24,
+      "title": "Gérer les affichages selon les rôles des utilisateurs",
       "start": "2022-06-03T08:00",
       "end": "2022-06-03T12:00",
       "user_id": 3,
       "project_id": 1
     },
     {
-      "id": 12,
-      "title": "Travail",
-      "start": "2022-06-03T08:01",
-      "end": "2022-06-03T13:01",
+      "id": 25,
+      "title": "Faire un tour des points d'améliorations du projet",
+      "start": "2022-06-03T13:00",
+      "end": "2022-06-03T16:00",
       "user_id": 3,
       "project_id": 1
+    },
+    {
+      "id": 26,
+      "title": "Générer des modales",
+      "start": "2022-06-06T08:00",
+      "end": "2022-06-06T12:00",
+      "user_id": 3,
+      "project_id": 1
+    },
+    {
+      "id": 27,
+      "title": "Compléter les données du système db json",
+      "start": "2022-06-06T13:00",
+      "end": "2022-06-06T15:00",
+      "user_id": 3,
+      "project_id": 1
+    },
+    {
+      "id": 28,
+      "title": "Traiter les retours des clients",
+      "start": "2022-06-06T15:00",
+      "end": "2022-06-06T18:00",
+      "user_id": 3,
+      "project_id": 2
+    },
+    {
+      "id": 29,
+      "title": "Faire un point sur l'avancement du projet",
+      "start": "2022-06-07T08:00",
+      "end": "2022-06-07T12:00",
+      "user_id": 3,
+      "project_id": 1
+    },
+    {
+      "id": 30,
+      "title": "Préparer des blagues pour les collaborateurs",
+      "start": "2022-06-07T13:00",
+      "end": "2022-06-07T16:00",
+      "user_id": 3,
+      "project_id": 3
     }
   ]
 }
