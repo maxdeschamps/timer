@@ -6,8 +6,8 @@
     <sand-input label="Date de fin" type="datetime-local" [formValue]="filter_date_to"></sand-input>
   </div>
   <div footer class="card-footer">
-    <sand-button class="success" id="apply_filters" (clickButtonEvent)="getClickButton($event)">Filtrer</sand-button>
-    <sand-button class="error" [secondary]="true" id="clear_filters" (clickButtonEvent)="getClickButton($event)">Supprimer les filtres</sand-button>
+    <sand-button class="info" id="apply_filters" (clickButtonEvent)="getClickButton($event)">Filtrer</sand-button>
+    <sand-button [secondary]="true" id="clear_filters" (clickButtonEvent)="getClickButton($event)">Supprimer les filtres</sand-button>
   </div>
 </sand-card>
 
@@ -19,7 +19,7 @@
       </sand-tab-item>
     </sand-tab-group>
   </sand-tab-item>
-  <sand-tab-item label="Nombre de tâches par projet">
+  <sand-tab-item label="Timeline des projets">
     <app-stats-timeline-tasks [filterDateFrom]="date_from" [filterDateTo]="date_to"></app-stats-timeline-tasks>
   </sand-tab-item>
 </sand-tab-group>

@@ -18,9 +18,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { StatsComponent } from './components/stats/stats.component';
 import { StatsTotalTasksComponent } from './components/stats/stats-details/stats-total-tasks/stats-total-tasks.component';
 import { StatsTimelineTasksComponent } from './components/stats/stats-details/stats-timeline-tasks/stats-timeline-tasks.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  {path: 'home', component: AppComponent},
+  {path: '', component: HomeComponent},
   {path: 'tasks', component: TaskComponent},
   {path: 'stats', component: StatsComponent},
   {path: 'login', component: LoginComponent},
@@ -41,6 +42,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     StatsComponent,
     StatsTotalTasksComponent,
     StatsTimelineTasksComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
