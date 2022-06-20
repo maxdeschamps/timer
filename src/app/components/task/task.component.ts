@@ -101,6 +101,16 @@ export class TaskComponent implements OnInit {
     }
   }
 
+  deleteTask() {
+    if (window.confirm(`Êtes-vous sûr de vouloir supprimer la tâche '${this.title.value}'`)) {
+      this.taskService.deleteTask(this.id).subscribe(item => {
+        this.modalService.disable();
+        this.refreshUserTasks()
+      });
+    }
+  }
+
+
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     dateClick: this.handleDateClick.bind(this),

@@ -32,6 +32,10 @@ export class TaskService {
 
   }
 
+  deleteTask(id: number) {
+    return this.httpClient.delete<any>(this.apiBasePath + `/tasks/${id}`)
+  }
+
   getTasksByDate(filterDateFrom: any, filterDateTo: any) {
     return function (task: any) {
       let start = Date.parse(task.start)/1000;

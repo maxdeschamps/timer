@@ -29,6 +29,8 @@
 
   </div>
   <div action>
-    <sand-button (click)="submitUserTask()">Valider</sand-button>
+
+    <sand-button *ngIf="id" (click)="deleteTask()" class="error btnTaskDelete" [secondary]="true">Supprimer</sand-button>
+    <sand-button (click)="submitUserTask()" class="success">Valider</sand-button>
   </div>
 </sand-modal>
