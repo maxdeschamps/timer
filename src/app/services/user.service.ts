@@ -32,4 +32,8 @@ export class UserService {
   unlogUser(): any {
     localStorage.setItem('user', JSON.stringify(null));
   }
+
+  loggedUserIsAdmin(): boolean {
+    return JSON.parse(<string>localStorage.getItem('user'))?.role === 'ADMIN';
+  }
 }
