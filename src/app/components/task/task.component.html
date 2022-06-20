@@ -1,5 +1,5 @@
-<sand-card [displayHeader]="true" [displayBody]="true" color="info">
-  <div header class="h2">Tasks</div>
+<sand-card [displayHeader]="true" [displayBody]="true" [displayFooter]="true" color="info">
+  <div header class="h2">Tâches</div>
   <div content>
     <div class="h2">Filtres</div>
     <p>Projet</p>
@@ -8,6 +8,9 @@
       <p>Choix du collaborateur</p>
       <sand-select [formValue]="selectedUser" [arrayItems]="users" (event)="userSelectedChanged($event)"></sand-select>
     </div>
+  </div>
+  <div footer class="h2">
+    <sand-button class="info" id="apply_filters" (clickButtonEvent)="filtreTasks()">Filtrer</sand-button>
   </div>
 </sand-card>
 
@@ -18,9 +21,7 @@
 
 
 <sand-modal *ngIf="displayed">
-  <div title>
-    Déclaration
-  </div>
+  <div title>Déclaration</div>
   <div detail>
 
       <sand-input label="Titre" type="text" [formValue]="title"></sand-input>
