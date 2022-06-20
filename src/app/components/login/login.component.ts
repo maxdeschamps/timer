@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
-import {UserModel} from "../../models/user.model";
-import {UserService} from "../../services/user.service";
-import {Router} from "@angular/router";
+import { User } from "../../models/user.model";
+import { UserService } from "../../services/user.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.userService.findUsers().subscribe(
-      (items: Array<UserModel>|null) => {
+      (items: Array<User>|null) => {
         const item = items
           ? items.find(item => (item.email === this.email.value && item.password === this.password.value))
           : null;
