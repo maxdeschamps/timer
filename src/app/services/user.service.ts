@@ -13,11 +13,11 @@ export class UserService {
   constructor(public httpClient: HttpClient) { }
 
   findUsers() {
-    return this.httpClient.get<any>(this.apiBasePath + "/users");
+    return this.httpClient.get<Array<User>>(this.apiBasePath + "/users");
   }
 
   getUsers() {
-    return this.httpClient.get<Array<any>>(this.apiBasePath + "/users");
+    return this.httpClient.get<Array<User>>(this.apiBasePath + "/users");
   }
 
   getLoggedUser(): User|null {

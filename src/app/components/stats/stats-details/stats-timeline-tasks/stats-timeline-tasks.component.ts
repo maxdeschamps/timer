@@ -36,39 +36,39 @@ export class StatsTimelineTasksComponent implements OnInit {
   }
 
   refreshData() {
+    // Get projects
     this.projectService.getProjects().subscribe(projects => {
-      this.projects = projects;
+      // Get users
       this.userService.getUsers().subscribe(users => {
-        this.users = users;
-
-        this.users.forEach((user: any) => {
-
-          this.taskService.getUserTasksAllProjects(user.id).subscribe(tasks => {
+        // Get tasks
+        this.taskService.getTasks().subscribe(tasks => {
+          users.forEach((user: User) => {
+            // Filter tasks by user
+            let filteredTasks = tasks.filter(this.taskService.getTasksByUser(user.id));
+            // If dates filters are enabled
             if (this.filterDateFrom != null || this.filterDateTo != null) {
-              tasks = tasks.filter(this.taskService.getTasksByDate(this.filterDateFrom, this.filterDateTo));
+              filteredTasks = filteredTasks.filter(this.taskService.getTasksByDate(this.filterDateFrom, this.filterDateTo));
             }
-            let dataTasks: any[] = [];
-            tasks.forEach((task: any) => {
-              let project = this.projects.filter((project: Project) => project.id === task.project_id);
-              project.forEach((element: any) => {
-                let taskObject: any = {
+            let dataTasks: Array<any> = [];
+            filteredTasks.forEach((task: Task) => {
+              let project = projects.filter((project: Project) => project.id === task.project_id);
+              project.forEach((element: Project) => {
+                dataTasks.push({
                   x: element.name,
                   y: [
                     new Date(task.start).getTime(),
                     new Date(task.end).getTime()
                   ]
-                }
-                dataTasks.push(taskObject);
+                });
               });
             });
-
             this.series.push({
               name: user.firstname,
               data: dataTasks,
             });
-
-            this.createChart();
           });
+          // Create chart
+          this.createChart();
         });
       });
     });
