@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 
 import { Task } from "../../../../models/task.model";
+import { Project } from "../../../../models/project.model";
+import { User } from "../../../../models/user.model";
 import { TaskService } from "../../../../services/task.service";
 import { ProjectService } from "../../../../services/project.service";
 import { UserService } from "../../../../services/user.service";
@@ -12,15 +14,15 @@ import { UserService } from "../../../../services/user.service";
 })
 export class StatsTimelineTasksComponent implements OnInit {
 
-  @Input() filterDateFrom?: any;
-  @Input() filterDateTo?: any;
+  @Input() filterDateFrom?: Date;
+  @Input() filterDateTo?: Date;
 
   chartOpt = {};
-  tasks: any = [];
-  projects: any = [];
-  users: any = [];
+  tasks: Array<Task> = [];
+  projects: Array<Project> = [];
+  users: Array<User> = [];
 
-  series: any[] = [];
+  series: Array<any> = [];
 
   constructor(public taskService: TaskService, public projectService: ProjectService, public userService: UserService) { }
 
@@ -29,10 +31,10 @@ export class StatsTimelineTasksComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     this.series = [];
-    this.refreshChartOpt();
+    this.refreshData();
   }
 
-  refreshChartOpt() {
+  refreshData() {
     this.projectService.getProjects().subscribe(projects => {
       this.projects = projects;
       this.userService.getUsers().subscribe(users => {
@@ -46,7 +48,7 @@ export class StatsTimelineTasksComponent implements OnInit {
             }
             let dataTasks: any[] = [];
             tasks.forEach((task: any) => {
-              let project = this.projects.filter((project: { id: number; }) => project.id === task.project_id);
+              let project = this.projects.filter((project: Project) => project.id === task.project_id);
               project.forEach((element: any) => {
                 let taskObject: any = {
                   x: element.name,
@@ -64,42 +66,46 @@ export class StatsTimelineTasksComponent implements OnInit {
               data: dataTasks,
             });
 
-            this.chartOpt = {
-              series: this.series,
-              chart: {
-                height: 450,
-                type: "rangeBar"
-              },
-              plotOptions: {
-                bar: {
-                  horizontal: true,
-                  barHeight: "80%"
-                }
-              },
-              xaxis: {
-                type: "datetime"
-              },
-              fill: {
-                type: "gradient",
-                gradient: {
-                  shade: "light",
-                  type: "vertical",
-                  shadeIntensity: 0.25,
-                  gradientToColors: undefined,
-                  inverseColors: true,
-                  opacityFrom: 1,
-                  opacityTo: 1,
-                  stops: [50, 0, 100, 100]
-                }
-              },
-              legend: {
-                position: "top",
-                horizontalAlign: "left"
-              }
-            };
+            this.createChart();
           });
         });
       });
     });
+  }
+
+  createChart() {
+    this.chartOpt = {
+      series: this.series,
+      chart: {
+        height: 450,
+        type: "rangeBar"
+      },
+      plotOptions: {
+        bar: {
+          horizontal: true,
+          barHeight: "80%"
+        }
+      },
+      xaxis: {
+        type: "datetime"
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          shade: "light",
+          type: "vertical",
+          shadeIntensity: 0.25,
+          gradientToColors: undefined,
+          inverseColors: true,
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [50, 0, 100, 100]
+        }
+      },
+      legend: {
+        position: "top",
+        horizontalAlign: "left"
+      }
+    };
   }
 }
