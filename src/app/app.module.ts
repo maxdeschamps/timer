@@ -18,6 +18,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { StatsComponent } from './components/stats/stats.component';
 import { StatsTotalTasksComponent } from './components/stats/stats-details/stats-total-tasks/stats-total-tasks.component';
 import { StatsTimelineTasksComponent } from './components/stats/stats-details/stats-timeline-tasks/stats-timeline-tasks.component';
+import { StatsHoursProjectsComponent } from './components/stats/stats-details/stats-hours-projects/stats-hours-projects.component';
 import { HomeComponent } from './components/home/home.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 
@@ -46,6 +47,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     StatsTimelineTasksComponent,
     HomeComponent,
     GalleryComponent,
+    StatsHoursProjectsComponent,
   ],
   imports: [
     BrowserModule,
