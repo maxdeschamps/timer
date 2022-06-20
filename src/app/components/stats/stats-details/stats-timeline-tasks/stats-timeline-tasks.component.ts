@@ -14,8 +14,8 @@ import { UserService } from "../../../../services/user.service";
 })
 export class StatsTimelineTasksComponent implements OnInit {
 
-  @Input() filterDateFrom?: Date;
-  @Input() filterDateTo?: Date;
+  @Input() filterDateFrom?: Date|any;
+  @Input() filterDateTo?: Date|any;
   @Input() reloadNum: number = 0;
 
   chartOpt = {};
@@ -50,7 +50,28 @@ export class StatsTimelineTasksComponent implements OnInit {
               filteredTasks = filteredTasks.filter(this.taskService.getTasksByDate(this.filterDateFrom, this.filterDateTo));
             }
             let dataTasks: Array<any> = [];
-            filteredTasks.forEach((task: Task) => {
+            filteredTasks.forEach((task: any) => {
+              // If dates filters are enabled
+              // For calcul nb hours per project
+              let start = Date.parse(task.start);
+              let end = Date.parse(task.end);
+              task.start = start;
+              task.end = end;
+              if (this.filterDateFrom != null || this.filterDateTo != null) {
+                let filterStart = Date.parse(this.filterDateFrom);
+                if (start < filterStart) {
+                  task.start = filterStart;
+                } else {
+                  task.start = start;
+                }
+
+                let filterEnd = Date.parse(this.filterDateTo);
+                if (end > filterEnd) {
+                  task.end = filterEnd;
+                } else {
+                  task.end = end;
+                }
+              }
               let project = projects.filter((project: Project) => project.id === task.project_id);
               project.forEach((element: Project) => {
                 dataTasks.push({
