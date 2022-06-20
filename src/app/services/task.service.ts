@@ -13,7 +13,7 @@ export class TaskService {
   }
 
   getTasks() {
-    return this.httpClient.get<Array<any>>(this.apiBasePath + "/tasks");
+    return this.httpClient.get<Array<Task>>(this.apiBasePath + "/tasks");
   }
 
   getUserTasks(projectId: number, userId: number) {
@@ -21,7 +21,7 @@ export class TaskService {
   }
 
   getUserTasksAllProjects(userId: number) {
-    return this.httpClient.get<Array<any>>(this.apiBasePath + "/tasks" + `?user_id=${userId}`);
+    return this.httpClient.get<Array<Task>>(this.apiBasePath + "/tasks" + `?user_id=${userId}`);
   }
 
   addUserTask(task: Task) {
@@ -36,6 +36,7 @@ export class TaskService {
     return this.httpClient.delete<any>(this.apiBasePath + `/tasks/${id}`)
   }
 
+  // Filters
   getTasksByDate(filterDateFrom: any, filterDateTo: any) {
     return function (task: any) {
       let start = Date.parse(task.start)/1000;
@@ -55,4 +56,21 @@ export class TaskService {
     }
   }
 
+  getTasksByUserAndProject(userId: number, projectId: number) {
+    return function (task: Task) {
+      return (task.user_id == userId && task.project_id == projectId);
+    }
+  }
+
+  getTasksByUser(userId: number) {
+    return function (task: Task) {
+      return task.user_id === userId;
+    }
+  }
+
+  getTasksByProject(projectId: number) {
+    return function (task: any) {
+      return task.project_id === projectId;
+    }
+  }
 }
