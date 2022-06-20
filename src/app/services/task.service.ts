@@ -25,14 +25,22 @@ export class TaskService {
   }
 
   addUserTask(task: TaskModel) {
+    if(task.id) {
+      return this.httpClient.put<any>(this.apiBasePath + `/tasks/${task.id}`, task)
+    }
     return this.httpClient.post<any>(this.apiBasePath + "/tasks", task)
+
+  }
+
+  deleteTask(id: number) {
+    return this.httpClient.delete<any>(this.apiBasePath + `/tasks/${id}`)
   }
 
   getTasksByDate(filterDateFrom: any, filterDateTo: any) {
     return function (task: any) {
       let start = Date.parse(task.start)/1000;
       let end = Date.parse(task.end)/1000;
-  
+
       if (filterDateFrom != null && filterDateTo === null) {
         let filterStart = Date.parse(filterDateFrom)/1000;
         return start >= filterStart || end > filterStart;

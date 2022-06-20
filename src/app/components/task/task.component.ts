@@ -20,6 +20,7 @@ export class TaskComponent implements OnInit {
   projects: any = []
   users: any = [];
 
+  id: any = null;
   title = new FormControl();
   start_date = new FormControl();
   end_date = new FormControl();
@@ -85,11 +86,12 @@ export class TaskComponent implements OnInit {
     const user = this.userService.getLoggedUser();
     if (user) {
       let task: Task = {
+        id: this.id,
         title: this.title.value,
         start: this.start_date.value,
         end:  this.end_date.value,
         user_id: user.id,
-        project_id: 1,
+        project_id: this.selectedProject.value,
       }
 
       this.taskService.addUserTask(task).subscribe(item => {
@@ -99,9 +101,20 @@ export class TaskComponent implements OnInit {
     }
   }
 
+  deleteTask() {
+    if (window.confirm(`Êtes-vous sûr de vouloir supprimer la tâche '${this.title.value}'`)) {
+      this.taskService.deleteTask(this.id).subscribe(item => {
+        this.modalService.disable();
+        this.refreshUserTasks()
+      });
+    }
+  }
+
+
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     dateClick: this.handleDateClick.bind(this),
+    eventClick: this.handleEventClick.bind(this),
     locale: 'fr',
     firstDay: 1,
     buttonText: {
@@ -110,6 +123,14 @@ export class TaskComponent implements OnInit {
     events: [],
   };
 
+  handleEventClick(eventClickInfo: any) {
+    this.openModal()
+    this.id = eventClickInfo.event._def.publicId
+    this.title.setValue(eventClickInfo.event._def.title)
+    this.start_date.setValue(eventClickInfo.event._instance.range.start.toISOString().substring(0, 16))
+    this.end_date.setValue(eventClickInfo.event._instance.range.end.toISOString().substring(0, 16))
+  }
+
   handleDateClick(arg: any) {
     this.openModal()
     this.start_date.setValue(`${arg.dateStr}T08:01`)
@@ -117,6 +138,7 @@ export class TaskComponent implements OnInit {
   }
 
   openModal() {
+    this.id = null
     this.title.setValue("")
     this.start_date.setValue("")
     this.end_date.setValue("")
