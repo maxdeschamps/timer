@@ -51,6 +51,6 @@ export class StatsComponent implements OnInit {
   }
 
   reloadTab() {
-    this.reloadNum = Math.floor(Math.random() * 100);
+    this.reloadNum++;
   }
 }
