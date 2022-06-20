@@ -1,8 +1,7 @@
 <sand-navbar navbarTitle="timeR">
   <sand-nav-link route="/">Accueil</sand-nav-link>
-  <sand-nav-link route="/tasks">Tâches</sand-nav-link>
-  <sand-nav-link route="/stats">Stats</sand-nav-link>
-  <sand-nav-link *ngIf="userIsAdmin()" route="/manager">Team's tasks</sand-nav-link>
+  <sand-nav-link *ngIf="userIsLogged()" route="/tasks">Tâches</sand-nav-link>
+  <sand-nav-link *ngIf="userIsLogged()" route="/stats">Stats</sand-nav-link>
   <sand-nav-link *ngIf="!user" route="/login">Connexion</sand-nav-link>
   <sand-nav-link *ngIf="user" route="/logout">Déconnexion</sand-nav-link>
 </sand-navbar>

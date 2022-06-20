@@ -1,6 +1,15 @@
-
-<p>Projet</p>
-<sand-select [formValue]="selectedProject" [arrayItems]="projects" (event)="projectSelectedChanged($event)"></sand-select>
+<sand-card [displayHeader]="true" [displayBody]="true" color="info">
+  <div header class="h2">Tasks</div>
+  <div content>
+    <div class="h2">Filtres</div>
+    <p>Projet</p>
+    <sand-select [formValue]="selectedProject" [arrayItems]="projects" (event)="projectSelectedChanged($event)"></sand-select>
+    <div *ngIf="userLoggedIsAdmin()">
+      <p>Choix du collaborateur</p>
+      <sand-select [formValue]="selectedUser" [arrayItems]="users" (event)="userSelectedChanged($event)"></sand-select>
+    </div>
+  </div>
+</sand-card>
 
 <div class="calendarContainer">
 
