@@ -1,33 +1,28 @@
 <sand-card [displayHeader]="true" [displayBody]="true" [displayFooter]="false" color="success">
-  <div header class="h2">
-    Accueil
-  </div>
+  <div header class="h2">Accueil</div>
   <div content>
     <div class="h3">Présentation</div>
     <p>
-      TimeR est un gestionnaire de tâches pour votre équipe.
+      <strong>TimeR</strong> est un gestionnaire de tâches pour vos projets.<br/>
+      Vos collaborateurs pourront saisir leurs temps sur différents projets liés à votre entreprise, et vos managers pourront visualiser les données rattachées aux projets selon plusieurs critères.
     </p>
     <div class="h3">Fonctionnalités</div>
     <p>
       <sand-list [listed]="true">
-        <sand-list-item>Calendrier</sand-list-item>
-        <sand-list-item>Connextion</sand-list-item>
-        <sand-list-item>
-          Plusieurs rôles
+        <sand-list-item>Une gestion des temps sur un <strong>calendrier</strong></sand-list-item>
+        <sand-list-item>Un système de <strong>connexion</strong> avec les rôles :
           <sand-list [listed]="true">
-            <sand-list-item>Utilisateur</sand-list-item>
-            <sand-list-item>Admin</sand-list-item>
+            <sand-list-item><strong>Collaborateur :</strong> afin de saisir simplement ses temps sur des projets,</sand-list-item>
+            <sand-list-item><strong>Manager :</strong> afin de visualiser les données.</sand-list-item>
           </sand-list>
         </sand-list-item>
-        <sand-list-item>Statistiques par personnes</sand-list-item>
+        <sand-list-item>Des <strong>statistiques</strong> liées aux collaborateurs et aux projets</sand-list-item>
       </sand-list>
     </p>
   </div>
 </sand-card>
 <div class="card-img">
   <sand-card [displayHeader]="true" [displayBody]="true" src="https://img.freepik.com/vecteurs-libre/equipe-gestion-agile-reunion-equipe-commerciale-vecteur-tableau-taches-scrum-gens-planifient-processus-travail_53562-11181.jpg">
-    <div header class="h3">
-      App pour une meilleure gestion agile
-    </div>
+    <div header class="h3">TimeR est une application vous aidant à mettre en place une meilleure gestion agile dans vos projets</div>
   </sand-card>
 </div>
