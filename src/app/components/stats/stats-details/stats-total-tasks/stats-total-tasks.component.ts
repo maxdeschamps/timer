@@ -40,21 +40,23 @@ export class StatsTotalTasksComponent implements OnInit {
 
   refreshData() {
     if (this.user) {
-      this.taskService.getUserTasksAllProjects(this.user).subscribe(items => {
-        this.tasks = items;
+      // Get tasks by user
+      this.taskService.getUserTasksAllProjects(this.user).subscribe(tasks => {
+        // Get projects
         this.projectService.getProjects().subscribe(projects => {
           this.projects = projects;
           this.projects.forEach((project: Project) => {
             if (project.id) {
-              let tasksByProject = this.tasks.filter(getTasksByUserId(project.id));
+              let tasksByProject = tasks.filter(this.taskService.getTasksByProject(project.id));
               if (this.filterDateFrom != null || this.filterDateTo != null) {
                 tasksByProject = tasksByProject.filter(this.taskService.getTasksByDate(this.filterDateFrom, this.filterDateTo));
               }
               this.data.push(tasksByProject.length);
               this.colors.push(project.color ? project.color : "");
-              this.categories.push(project.name ? project.name : "");
+              this.categories.push(project.name);
             }
           });
+          // Create chart
           this.createChart();
         });
       });
@@ -104,11 +106,5 @@ export class StatsTotalTasksComponent implements OnInit {
         }
       }
     };
-  }
-}
-
-function getTasksByUserId(projectId: number) {
-  return function (task: any) {
-    return task.project_id === projectId;
   }
 }
