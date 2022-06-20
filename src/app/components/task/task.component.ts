@@ -96,7 +96,7 @@ export class TaskComponent implements OnInit {
 
       this.taskService.addUserTask(task).subscribe(item => {
         this.modalService.disable();
-        this.refreshUserTasks()
+        this.refreshUserTasks();
       });
     }
   }
@@ -109,7 +109,6 @@ export class TaskComponent implements OnInit {
       });
     }
   }
-
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
@@ -143,6 +142,10 @@ export class TaskComponent implements OnInit {
     this.start_date.setValue("")
     this.end_date.setValue("")
     this.modalService.enable();
+  }
+
+  filtreTasks() {
+    this.refreshUserTasks();
   }
 
   userLoggedIsAdmin(): boolean {
