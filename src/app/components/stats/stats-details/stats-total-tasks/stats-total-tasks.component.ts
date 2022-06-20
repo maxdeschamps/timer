@@ -15,6 +15,7 @@ export class StatsTotalTasksComponent implements OnInit {
   @Input() user?: number;
   @Input() filterDateFrom?: Date;
   @Input() filterDateTo?: Date;
+  @Input() reloadNum: number = 0;
 
   chartOpt = {};
   tasks: Array<Task> = [];

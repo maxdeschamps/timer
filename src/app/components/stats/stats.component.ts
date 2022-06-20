@@ -20,6 +20,7 @@ export class StatsComponent implements OnInit {
   filter_date_to = new FormControl();
   date_from?:any = null;
   date_to?:any = null;
+  reloadNum: number = 0;
 
   constructor(public router: Router, public taskService: TaskService, public projectService: ProjectService, public userService: UserService) { }
 
@@ -47,5 +48,9 @@ export class StatsComponent implements OnInit {
       this.date_from = this.filter_date_from.value;
       this.date_to = this.filter_date_to.value;
     }
+  }
+
+  reloadTab() {
+    this.reloadNum = Math.floor(Math.random() * 100);
   }
 }

@@ -16,6 +16,7 @@ export class StatsTimelineTasksComponent implements OnInit {
 
   @Input() filterDateFrom?: Date;
   @Input() filterDateTo?: Date;
+  @Input() reloadNum: number = 0;
 
   chartOpt = {};
   tasks: Array<Task> = [];
