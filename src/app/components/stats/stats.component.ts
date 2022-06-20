@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Task } from "../../models/task.model";
 
+import {User} from "../../models/user.model";
 import { TaskService } from "../../services/task.service";
 import { ProjectService } from "../../services/project.service";
 import { UserService } from "../../services/user.service";
-import { IDatePickerConfig } from 'ng2-date-picker';
-import {FormControl} from "@angular/forms";
-import {Router} from "@angular/router";
+import { FormControl } from "@angular/forms";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-stats',
@@ -15,14 +14,13 @@ import {Router} from "@angular/router";
 })
 export class StatsComponent implements OnInit {
 
-  projects:any = [];
-  users:any = [];
-  tasks:any = [];
+  users:Array<User> = [];
 
   filter_date_from = new FormControl();
   filter_date_to = new FormControl();
   date_from?:any = null;
   date_to?:any = null;
+  reloadNum: number = 0;
 
   constructor(public router: Router, public taskService: TaskService, public projectService: ProjectService, public userService: UserService) { }
 
@@ -50,5 +48,9 @@ export class StatsComponent implements OnInit {
       this.date_from = this.filter_date_from.value;
       this.date_to = this.filter_date_to.value;
     }
+  }
+
+  reloadTab() {
+    this.reloadNum++;
   }
 }

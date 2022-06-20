@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { Task } from "../../../../models/task.model";
+import { Project } from "../../../../models/project.model";
 
 import { TaskService } from "../../../../services/task.service";
 import { ProjectService } from "../../../../services/project.service";
@@ -12,16 +13,17 @@ import { ProjectService } from "../../../../services/project.service";
 export class StatsTotalTasksComponent implements OnInit {
 
   @Input() user?: number;
-  @Input() filterDateFrom?: any;
-  @Input() filterDateTo?: any;
+  @Input() filterDateFrom?: Date;
+  @Input() filterDateTo?: Date;
+  @Input() reloadNum: number = 0;
 
   chartOpt = {};
-  tasks: any = [];
-  projects: any = [];
+  tasks: Array<Task> = [];
+  projects: Array<Project> = [];
 
-  data: number[] = [];
-  colors: string[] = [];
-  categories: string[] = [];
+  data: Array<number> = [];
+  colors: Array<string> = [];
+  categories: Array<string> = [];
 
   constructor(public taskService: TaskService, public projectService: ProjectService) {
   }
@@ -33,70 +35,75 @@ export class StatsTotalTasksComponent implements OnInit {
     this.data = [];
     this.colors = [];
     this.categories = [];
-    this.refreshChartOpt();
+    this.refreshData();
   }
 
-  refreshChartOpt() {
+  refreshData() {
     if (this.user) {
       this.taskService.getUserTasksAllProjects(this.user).subscribe(items => {
         this.tasks = items;
         this.projectService.getProjects().subscribe(projects => {
           this.projects = projects;
-          this.projects.forEach((project: { id: number; color: string; name: string; }) => {
-            let tasksByProject = this.tasks.filter(getTasksByUserId(project.id));
-            if (this.filterDateFrom != null || this.filterDateTo != null) {
-              tasksByProject = tasksByProject.filter(this.taskService.getTasksByDate(this.filterDateFrom, this.filterDateTo));
+          this.projects.forEach((project: Project) => {
+            if (project.id) {
+              let tasksByProject = this.tasks.filter(getTasksByUserId(project.id));
+              if (this.filterDateFrom != null || this.filterDateTo != null) {
+                tasksByProject = tasksByProject.filter(this.taskService.getTasksByDate(this.filterDateFrom, this.filterDateTo));
+              }
+              this.data.push(tasksByProject.length);
+              this.colors.push(project.color ? project.color : "");
+              this.categories.push(project.name ? project.name : "");
             }
-            this.data.push(tasksByProject.length);
-            this.colors.push(project.color);
-            this.categories.push(project.name);
           });
-
-          this.chartOpt = {
-            series: [
-              {
-                name: "Tâches",
-                data: this.data
-              }
-            ],
-            chart: {
-              height: 350,
-              type: "bar",
-            },
-            colors: this.colors,
-            plotOptions: {
-              bar: {
-                distributed: true
-              }
-            },
-            dataLabels: {
-              enabled: false
-            },
-            legend: {
-              show: false
-            },
-            yaxis: [
-              {
-                labels: {
-                  formatter: function(val: number) {
-                    return val.toFixed(0);
-                  }
-                }
-              }
-            ],
-            xaxis: {
-              categories: this.categories,
-              labels: {
-                style: {
-                  colors: this.colors,
-                  fontSize: "12px"
-                }
-              }
-            }
-          };
+          this.createChart();
         });
       });
     }
+  }
+
+  createChart() {
+    this.chartOpt = {
+      series: [
+        {
+          name: "Tâches",
+          data: this.data
+        }
+      ],
+      chart: {
+        height: 350,
+        type: "bar",
+      },
+      colors: this.colors,
+      plotOptions: {
+        bar: {
+          distributed: true
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      legend: {
+        show: false
+      },
+      yaxis: [
+        {
+          labels: {
+            formatter: function (val: number) {
+              return val.toFixed(0);
+            }
+          }
+        }
+      ],
+      xaxis: {
+        categories: this.categories,
+        labels: {
+          style: {
+            colors: this.colors,
+            fontSize: "12px"
+          }
+        }
+      }
+    };
   }
 }
 

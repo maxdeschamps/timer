@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {UserModel} from "../models/user.model";
-import {HttpClient} from "@angular/common/http";
+import { User } from "../models/user.model";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  user: UserModel|null = null;
+  user: User|null = null;
 
   apiBasePath = 'http://localhost:3000';
 
@@ -20,11 +20,11 @@ export class UserService {
     return this.httpClient.get<Array<any>>(this.apiBasePath + "/users");
   }
 
-  getLoggedUser(): UserModel|null {
+  getLoggedUser(): User|null {
     return JSON.parse(<string>localStorage.getItem('user'));
   }
 
-  logUser(user: UserModel): boolean {
+  logUser(user: User): boolean {
     localStorage.setItem('user', JSON.stringify(user));
     return true;
   }

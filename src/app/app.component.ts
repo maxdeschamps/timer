@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Router, Event, NavigationEnd} from '@angular/router';
-import {UserService} from "./services/user.service";
-import {UserModel} from "./models/user.model";
+import { Router, Event, NavigationEnd } from '@angular/router';
+import { UserService } from "./services/user.service";
+import { User } from "./models/user.model";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,8 @@ import {UserModel} from "./models/user.model";
 export class AppComponent {
   title = 'timer';
   currentRoute: string;
-  user: UserModel|null = null;
+
+  user: User|null = null;
 
   constructor(private router: Router, private userService: UserService) {
     this.currentRoute = "";

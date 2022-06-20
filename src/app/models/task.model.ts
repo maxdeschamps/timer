@@ -1,11 +1,9 @@
-export interface TaskModel {
-  id?: number;
+export interface Task {
+  id: number|null;
+  title?: string;
   description?: string;
-  start_date?: Date;
-  end_date?: Date;
+  start?: Date;
+  end?: Date;
   user_id?: number;
   project_id?: number;
-}
-
-export class Task {
 }

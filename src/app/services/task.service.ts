@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {TaskModel} from "../models/task.model";
+import { HttpClient } from "@angular/common/http";
+import { Task } from "../models/task.model";
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,7 @@ export class TaskService {
     return this.httpClient.get<Array<any>>(this.apiBasePath + "/tasks" + `?user_id=${userId}`);
   }
 
-  addUserTask(task: TaskModel) {
+  addUserTask(task: Task) {
     if(task.id) {
       return this.httpClient.put<any>(this.apiBasePath + `/tasks/${task.id}`, task)
     }
