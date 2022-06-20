@@ -6,6 +6,7 @@ import { ProjectService } from "../../services/project.service";
 import { UserService } from "../../services/user.service";
 import { IDatePickerConfig } from 'ng2-date-picker';
 import {FormControl} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-stats',
@@ -23,11 +24,13 @@ export class StatsComponent implements OnInit {
   date_from?:any = null;
   date_to?:any = null;
 
-
-
-  constructor(public taskService: TaskService, public projectService: ProjectService, public userService: UserService) { }
+  constructor(public router: Router, public taskService: TaskService, public projectService: ProjectService, public userService: UserService) { }
 
   ngOnInit(): void {
+    if (!this.userService.getLoggedUser()) {
+      this.router.navigate(['login'])
+    }
+
     this.refreshUsers()
   }
 

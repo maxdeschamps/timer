@@ -6,6 +6,7 @@ import {CalendarOptions} from '@fullcalendar/angular';
 import {FormControl} from "@angular/forms";
 import {ModalService} from 'sandouich';
 import {UserService} from "../../services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-task',
@@ -25,9 +26,12 @@ export class TaskComponent implements OnInit {
   selectedProject = new FormControl(1);
   selectedUser = new FormControl(this.userService.getLoggedUser()?.id ?? 1);
 
-  constructor(public taskService: TaskService, public modalService: ModalService, public projectService: ProjectService, public userService: UserService) { }
+  constructor(public router: Router, public taskService: TaskService, public modalService: ModalService, public projectService: ProjectService, public userService: UserService) { }
 
   ngOnInit(): void {
+    if (!this.userService.getLoggedUser()) {
+      this.router.navigate(['login'])
+    }
     this.refreshUserTasks();
     this.refreshProjects();
     if (this.userService.loggedUserIsAdmin()) {
