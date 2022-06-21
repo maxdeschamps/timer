@@ -23,6 +23,10 @@
   <div title class="h3">Déclaration</div>
   <div detail>
       <sand-input label="Titre" type="text" [formValue]="title"></sand-input>
+      Projets
+      <sand-select [formValue]="selectedProject" [arrayItems]="projects" (event)="projectSelectedChanged($event)"></sand-select>
+      Collaborateurs
+      <sand-select *ngIf="userLoggedIsAdmin()" [formValue]="selectedUser" [arrayItems]="users" (event)="userSelectedChanged($event)"></sand-select>
       <sand-input label="Date début" type="datetime-local" [formValue]="start_date"></sand-input>
       <sand-input label="Date fin" type="datetime-local" [formValue]="end_date"></sand-input>
   </div>
