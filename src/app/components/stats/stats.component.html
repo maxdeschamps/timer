@@ -15,14 +15,14 @@
   <sand-tab-item label="Nombre de tâches par projet">
     <sand-tab-group color="info" (changeTab)="reloadTab()">
       <sand-tab-item *ngFor="let user of users" [label]="user.firstname">
-        <app-stats-total-tasks [filterDateFrom]="date_from" [filterDateTo]="date_to" [reloadNum]="reloadNum" [user]="user.id"></app-stats-total-tasks>
+        <app-stats-total-tasks *ngIf="dataLoad" [projects]="projects" [tasks]="tasks" [filterDateFrom]="date_from" [filterDateTo]="date_to" [reloadNum]="reloadNum" [user]="user.id"></app-stats-total-tasks>
       </sand-tab-item>
     </sand-tab-group>
   </sand-tab-item>
   <sand-tab-item label="Timeline des projets">
-    <app-stats-timeline-tasks [filterDateFrom]="date_from" [filterDateTo]="date_to" [reloadNum]="reloadNum"></app-stats-timeline-tasks>
+    <app-stats-timeline-tasks *ngIf="dataLoad" [filterDateFrom]="date_from" [filterDateTo]="date_to" [reloadNum]="reloadNum"></app-stats-timeline-tasks>
   </sand-tab-item>
   <sand-tab-item label="Heures par projet">
-    <app-stats-hours-projects [filterDateFrom]="date_from" [filterDateTo]="date_to" [reloadNum]="reloadNum"></app-stats-hours-projects>
+    <app-stats-hours-projects *ngIf="dataLoad" [filterDateFrom]="date_from" [filterDateTo]="date_to" [reloadNum]="reloadNum"></app-stats-hours-projects>
   </sand-tab-item>
 </sand-tab-group>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import {User} from "../../models/user.model";
+import { User } from "../../models/user.model";
+import { Task } from "../../models/task.model";
+import { Project } from "../../models/project.model";
 import { TaskService } from "../../services/task.service";
 import { ProjectService } from "../../services/project.service";
 import { UserService } from "../../services/user.service";
@@ -14,13 +16,17 @@ import { Router } from "@angular/router";
 })
 export class StatsComponent implements OnInit {
 
-  users:Array<User> = [];
+  users: Array<User> = [];
+  projects: Array<Project> = [];
+  tasks: Array<Task> = [];
 
   filter_date_from = new FormControl();
   filter_date_to = new FormControl();
-  date_from?:any = null;
-  date_to?:any = null;
+  date_from?: any = null;
+  date_to?: any = null;
   reloadNum: number = 0;
+
+  dataLoad = false;
 
   constructor(public router: Router, public taskService: TaskService, public projectService: ProjectService, public userService: UserService) { }
 
@@ -29,16 +35,23 @@ export class StatsComponent implements OnInit {
       this.router.navigate(['login'])
     }
 
-    this.refreshUsers()
+    this.refreshData()
   }
 
-  refreshUsers() {
+  refreshData() {
     this.userService.getUsers().subscribe(users => {
       this.users = users;
+      this.projectService.getProjects().subscribe(projects => {
+        this.projects = projects;
+        this.taskService.getTasks().subscribe(tasks => {
+          this.tasks = tasks;
+          this.dataLoad = true;
+        });
+      });
     });
   }
 
-  getClickButton(event :number|string){
+  getClickButton(event: number | string) {
     if (event === "apply_filters") {
       this.date_from = this.filter_date_from.value;
       this.date_to = this.filter_date_to.value;

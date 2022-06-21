@@ -12,14 +12,14 @@ import { ProjectService } from "../../../../services/project.service";
 })
 export class StatsTotalTasksComponent implements OnInit {
 
+  @Input() projects: Array<Project> = [];
+  @Input() tasks: Array<Task> = [];
   @Input() user?: number;
   @Input() filterDateFrom?: Date;
   @Input() filterDateTo?: Date;
   @Input() reloadNum: number = 0;
 
   chartOpt = {};
-  tasks: Array<Task> = [];
-  projects: Array<Project> = [];
 
   data: Array<number> = [];
   colors: Array<string> = [];
@@ -41,25 +41,21 @@ export class StatsTotalTasksComponent implements OnInit {
   refreshData() {
     if (this.user) {
       // Get tasks by user
-      this.taskService.getUserTasksAllProjects(this.user).subscribe(tasks => {
-        // Get projects
-        this.projectService.getProjects().subscribe(projects => {
-          this.projects = projects;
-          this.projects.forEach((project: Project) => {
-            if (project.id) {
-              let tasksByProject = tasks.filter(this.taskService.getTasksByProject(project.id));
-              if (this.filterDateFrom != null || this.filterDateTo != null) {
-                tasksByProject = tasksByProject.filter(this.taskService.getTasksByDate(this.filterDateFrom, this.filterDateTo));
-              }
-              this.data.push(tasksByProject.length);
-              this.colors.push(project.color ? project.color : "");
-              this.categories.push(project.name);
-            }
-          });
-          // Create chart
-          this.createChart();
-        });
+      let tasks = this.tasks.filter(this.taskService.getTasksByUser(this.user));
+      // Get projects
+      this.projects.forEach((project: Project) => {
+        if (project.id) {
+          let tasksByProject = tasks.filter(this.taskService.getTasksByProject(project.id));
+          if (this.filterDateFrom != null || this.filterDateTo != null) {
+            tasksByProject = tasksByProject.filter(this.taskService.getTasksByDate(this.filterDateFrom, this.filterDateTo));
+          }
+          this.data.push(tasksByProject.length);
+          this.colors.push(project.color ? project.color : "");
+          this.categories.push(project.name);
+        }
       });
+      // Create chart
+      this.createChart();
     }
   }
 
