@@ -117,7 +117,7 @@
     },
     {
       "id": 10,
-      "title": "Correction des erreurs de les tabs",
+      "title": "Correction des erreurs dans les tabs",
       "start": "2022-06-07T13:00",
       "end": "2022-06-07T15:00",
       "user_id": 1,
@@ -199,15 +199,15 @@
       "id": 19,
       "title": "Review PR",
       "start": "2022-06-07T09:00",
-      "end": "2022-06-07T11:00",
+      "end": "2022-06-07T12:00",
       "user_id": 2,
       "project_id": 3
     },
     {
       "id": 20,
       "title": "Rire aux blagues du chef de projet",
-      "start": "2022-06-07T11:00",
-      "end": "2022-06-07T12:00",
+      "start": "2022-06-07T13:00",
+      "end": "2022-06-07T17:00",
       "user_id": 2,
       "project_id": 3
     },
