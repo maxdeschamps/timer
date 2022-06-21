@@ -15,6 +15,10 @@ export class LoginComponent implements OnInit {
   password = new FormControl();
 
   errors: string|null = null;
+  envDev: boolean = false;
+
+  selectedUser = new FormControl(0);
+  users: Array<User> = [];
 
   constructor(public router: Router, public userService: UserService) { }
 
@@ -22,7 +26,33 @@ export class LoginComponent implements OnInit {
     if (this.userService.getLoggedUser()) {
       this.router.navigate(['tasks']);
     }
+    this.initUsers();
   }
+
+  initUsers() {
+    this.userService.findUsers().subscribe(items => {
+      let usersArray: Array<any> = [];
+      for(let i=0; i<items.length; i++) {
+        usersArray.push({
+          name: items[i].firstname + ' ' + items[i].lastname,
+          id: items[i].id
+        })
+      }
+      this.users = usersArray;
+    });
+  }
+
+  userSelectedChanged(userId: any) {
+    this.selectedUser.setValue(userId);
+    this.userService.getUsers().subscribe(items => {
+      let user = items.find(item => item.id === userId);
+      if (user) {
+        this.email.setValue(user.email);
+        this.password.setValue(user.password);
+      }
+    })
+  }
+
 
   logUser(): void {
     if (!this.email || !this.password) {
@@ -46,5 +76,4 @@ export class LoginComponent implements OnInit {
       }
     )
   }
-
 }

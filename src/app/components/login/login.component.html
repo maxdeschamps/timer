@@ -4,6 +4,11 @@
     <div *ngIf="errors" class="errors">
       <p>{{ errors }}</p>
     </div>
+    <div *ngIf="!envDev">
+      <p>Select temporaire des données d'un utilisateur :</p>
+      <sand-select [formValue]="selectedUser" [arrayItems]="users" (event)="userSelectedChanged($event)"></sand-select>
+      <br/>
+    </div>
     <sand-input label="Email" type="email" [formValue]="email"></sand-input>
     <sand-input label="Mot de passe" type="password" [formValue]="password"></sand-input>
     <sand-button class="info" (click)="logUser()">Se connecter</sand-button>
